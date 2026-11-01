@@ -7,6 +7,8 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -79,13 +81,15 @@ fun PvZ2CLoadingOverlay(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(text = text, fontSize = 24.sp, color = Color.White)
-            PvZ2CLoadingIndicator(
-                modifier = Modifier.graphicsLayer {
-                    rotationZ = angle.value
-                    translationX = orbitPx * cos(radians).toFloat()
-                    translationY = orbitPx * sin(radians).toFloat()
-                }
-            )
+            Box(modifier = Modifier.offset(y = (-4).dp)) {
+                PvZ2CLoadingIndicator(
+                    modifier = Modifier.graphicsLayer {
+                        rotationZ = angle.value
+                        translationX = orbitPx * cos(radians).toFloat()
+                        translationY = orbitPx * sin(radians).toFloat()
+                    }
+                )
+            }
         }
     }
 
@@ -98,7 +102,8 @@ fun PvZ2CLoadingIndicator(
     tailFractionOfArc: Float = 0.15f,
     arcStartDeg: Float = 120f
 ) {
-    Canvas(modifier = modifier.size(64.dp)) {
+    Canvas(modifier = modifier.size(72.dp)
+        .padding(4.dp)) {
         val strokeWidth = 15f
         val radius = size.minDimension / 2f - strokeWidth * 1.5f
         val topLeft = Offset(center.x - radius, center.y - radius)
