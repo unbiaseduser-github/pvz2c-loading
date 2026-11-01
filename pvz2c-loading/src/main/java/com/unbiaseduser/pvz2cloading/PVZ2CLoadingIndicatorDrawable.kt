@@ -1,12 +1,21 @@
 package com.unbiaseduser.pvz2cloading
 
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.ColorFilter
+import android.graphics.Matrix
+import android.graphics.Paint
+import android.graphics.Path
+import android.graphics.PixelFormat
+import android.graphics.Rect
+import android.graphics.RectF
+import android.graphics.SweepGradient
 import android.graphics.drawable.Drawable
 import kotlin.math.cos
 import kotlin.math.sin
 
 class PVZ2CLoadingIndicatorDrawable(
-    private val strokeWidthPx: Float,
+    private val strokeWidthPx: Float = 15f,
     private val arcSweepDeg: Float = 270f,
     private val tailFractionOfArc: Float = 0.15f,
     private val arcStartDeg: Float = 120f

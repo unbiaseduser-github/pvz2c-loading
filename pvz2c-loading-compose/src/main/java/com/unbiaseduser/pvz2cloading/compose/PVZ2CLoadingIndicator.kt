@@ -98,14 +98,14 @@ fun PvZ2CLoadingOverlay(
 @Composable
 fun PvZ2CLoadingIndicator(
     modifier: Modifier = Modifier,
+    strokeWidthPx: Float = 15f,
     arcSweepDeg: Float = 270f,
     tailFractionOfArc: Float = 0.15f,
     arcStartDeg: Float = 120f
 ) {
     Canvas(modifier = modifier.size(72.dp)
         .padding(4.dp)) {
-        val strokeWidth = 15f
-        val radius = size.minDimension / 2f - strokeWidth * 1.5f
+        val radius = size.minDimension / 2f - strokeWidthPx * 1.5f
         val topLeft = Offset(center.x - radius, center.y - radius)
         val arcSize = Size(radius * 2f, radius * 2f)
 
@@ -135,7 +135,7 @@ fun PvZ2CLoadingIndicator(
                 topLeft = topLeft,
                 size = arcSize,
                 style = Stroke(
-                    width = strokeWidth,
+                    width = strokeWidthPx,
                     cap = StrokeCap.Butt
                 )
             )
@@ -154,9 +154,9 @@ fun PvZ2CLoadingIndicator(
                 y = center.y + radius * radialY
             )
 
-            val arrowLength = strokeWidth * 1.8f
-            val arrowHalfWidth = strokeWidth * 1.6f
-            val overlap = strokeWidth * 0.45f
+            val arrowLength = strokeWidthPx * 1.8f
+            val arrowHalfWidth = strokeWidthPx * 1.6f
+            val overlap = strokeWidthPx * 0.45f
 
             val baseCenter = Offset(
                 x = endPoint.x - tangentX * overlap,

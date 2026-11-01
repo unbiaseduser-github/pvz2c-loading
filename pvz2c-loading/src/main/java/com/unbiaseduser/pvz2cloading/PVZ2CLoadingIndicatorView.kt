@@ -15,7 +15,7 @@ class PVZ2CLoadingIndicatorView : AppCompatImageView {
     private val animator: ValueAnimator
 
     init {
-        setImageDrawable(PVZ2CLoadingIndicatorDrawable(15F))
+        setImageDrawable(PVZ2CLoadingIndicatorDrawable())
         animator = getPvZ2CLoadingIndicatorAnimation(this)
     }
 
