@@ -17,12 +17,11 @@
         android:layout_gravity="center_horizontal"
         tools:textColor="@android:color/darker_gray"/>
 
-    <ImageView
-        android:id="@+id/image"
+    <com.unbiaseduser.pvz2cloading.PVZ2CLoadingIndicatorView
+        android:id="@+id/indicator"
         android:importantForAccessibility="no"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        tools:src="@android:color/darker_gray"
         android:layout_gravity="center_horizontal"/>
 
 </LinearLayout>
