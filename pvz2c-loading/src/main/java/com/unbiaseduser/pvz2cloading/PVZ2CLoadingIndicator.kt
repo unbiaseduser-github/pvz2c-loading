@@ -8,6 +8,10 @@ import android.view.animation.LinearInterpolator
 import kotlin.math.cos
 import kotlin.math.sin
 
+@JvmName("getPvZ2CLoadingIndicatorAnimation")
+fun getPvZ2CLoadingIndicatorAnimationDefault(spinnerView: View) =
+    getPvZ2CLoadingIndicatorAnimation(spinnerView)
+
 fun getPvZ2CLoadingIndicatorAnimation(
     spinnerView: View,
     orbitRadiusPx: Float = 4f * spinnerView.resources.displayMetrics.density,
