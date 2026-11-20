@@ -1,12 +1,20 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.compose.compiler)
+    id("maven-publish")
 }
 
 android {
     namespace = "com.unbiaseduser.pvz2cloading.compose"
     compileSdk {
         version = release(37)
+    }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            withJavadocJar()
+        }
     }
 
     defaultConfig {
@@ -22,6 +30,49 @@ android {
         compose = true
     }
 
+}
+
+publishing {
+    publications {
+        register<MavenPublication>("release") {
+            groupId = "com.unbiaseduser"
+            artifactId = "pvz2c-loading-compose"
+            version = "0.1.0"
+
+            afterEvaluate {
+                from(components["release"])
+            }
+
+            pom {
+                name.set("pvz2c-loading-compose")
+                description.set("Authentic recreation of Chinese PvZ2's loading indicator & overlay, Compose version")
+                url.set("https://github.com/unbiaseduser-github/pvz2c-loading")
+
+                licenses {
+                    license {
+                        name.set("Apache-2.0")
+                        url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
+                        distribution.set("repo")
+                    }
+                }
+
+                developers {
+                    developer {
+                        id.set("unbiaseduser-github")
+                        name.set("Dang Quang Trung")
+                        email.set("quangtrung02hn16@gmail.com")
+                        url.set("https://github.com/unbiaseduser-github")
+                    }
+                }
+
+                scm {
+                    connection.set("scm:git:git://github.com/unbiaseduser-github/pvz2c-loading.git")
+                    developerConnection.set("scm:git:ssh://github.com:unbiaseduser-github/pvz2c-loading.git")
+                    url.set("https://github.com/unbiaseduser-github/pvz2c-loading/tree/master")
+                }
+            }
+        }
+    }
 }
 
 dependencies {
