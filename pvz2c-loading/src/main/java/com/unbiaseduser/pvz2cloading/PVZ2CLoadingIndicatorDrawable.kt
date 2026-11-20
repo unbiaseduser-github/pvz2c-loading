@@ -18,7 +18,7 @@ class PVZ2CLoadingIndicatorDrawable(
     private val strokeWidthPx: Float = 15f,
     private val arcSweepDeg: Float = 270f,
     private val tailFractionOfArc: Float = 0.15f,
-    private val arcStartDeg: Float = 120f
+    private val arcStartDeg: Float = 0f
 ) : Drawable() {
 
     private val arcPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {

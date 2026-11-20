@@ -101,7 +101,7 @@ fun PvZ2CLoadingIndicator(
     strokeWidthPx: Float = 15f,
     arcSweepDeg: Float = 270f,
     tailFractionOfArc: Float = 0.15f,
-    arcStartDeg: Float = 120f
+    arcStartDeg: Float = 0f
 ) {
     Canvas(modifier = modifier.size(72.dp)
         .padding(4.dp)) {
