@@ -21,6 +21,11 @@ class PVZ2CLoadingIndicatorDrawable(
     private val arcStartDeg: Float = 0f
 ) : Drawable() {
 
+    companion object {
+        @JvmStatic
+        fun default() = PVZ2CLoadingIndicatorDrawable()
+    }
+
     private val arcPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.STROKE
         strokeWidth = strokeWidthPx
