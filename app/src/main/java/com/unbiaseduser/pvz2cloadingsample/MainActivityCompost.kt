@@ -28,8 +28,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.unbiaseduser.pvz2cloading.compose.PvZ2CLoadingOverlay
 
 class MainActivityCompost : AppCompatActivity() {
@@ -39,26 +40,35 @@ class MainActivityCompost : AppCompatActivity() {
         enableEdgeToEdge()
         setContent {
             AppTheme {
+                val viewModel: MainActivityViewModel = viewModel()
                 Scaffold(topBar = { TopAppBar(title = { Text("PvZ2C Loading Sample (Compose)") }) } ) { paddingValues ->
                     Column(
                         modifier = Modifier.fillMaxSize()
                             .padding(paddingValues)
                     ) {
+                        val isOverlayVisible: Boolean by viewModel.isOverlayVisibleFlow.collectAsStateWithLifecycle()
                         var runLoadingAnimation: Boolean by remember { mutableStateOf(true) }
                         Row(modifier = Modifier.fillMaxWidth()) {
-                            TextButton(onClick = { runLoadingAnimation = false }) {
-                                Text("Pause")
+                            TextButton(onClick = { viewModel.isOverlayVisible = !viewModel.isOverlayVisible }) {
+                                Text("Toggle")
                             }
-                            TextButton(onClick = { runLoadingAnimation = true }) {
-                                Text("Resume")
+                            if (isOverlayVisible) {
+                                TextButton(onClick = { runLoadingAnimation = false }) {
+                                    Text("Pause")
+                                }
+                                TextButton(onClick = { runLoadingAnimation = true }) {
+                                    Text("Resume")
+                                }
                             }
                         }
                         Box(modifier = Modifier.fillMaxWidth()) {
                             Text("insert game content here", modifier = Modifier.fillMaxWidth())
-                            PvZ2CLoadingOverlay(
-                                running = runLoadingAnimation,
-                                modifier = Modifier.fillMaxWidth()
-                            )
+                            if (isOverlayVisible) {
+                                PvZ2CLoadingOverlay(
+                                    running = runLoadingAnimation,
+                                    modifier = Modifier.fillMaxWidth()
+                                )
+                            }
                         }
                     }
                 }
