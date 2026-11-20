@@ -47,6 +47,7 @@ class PVZ2CLoadingIndicatorView : AppCompatImageView {
     }
 
     override fun onDetachedFromWindow() {
+        animator.end()
         animator.cancel()
         super.onDetachedFromWindow()
     }
@@ -68,6 +69,7 @@ class PVZ2CLoadingIndicatorView : AppCompatImageView {
             }
         } else {
             if (animator.isStarted && !animator.isPaused) {
+                animator.end()
                 animator.pause()
             }
         }
