@@ -39,7 +39,8 @@ fun PvZ2CLoadingOverlay(
     running: Boolean = true,
     text: String = "服务器通讯中...",
     orbitRadius: Dp = 4.dp,
-    durationMillis: Int = 1000
+    durationMillis: Int = 1000,
+    angleOffsetForOrbit: Double = -120.0
 ) {
     val angle = remember { Animatable(0f) }
 
@@ -71,7 +72,7 @@ fun PvZ2CLoadingOverlay(
         orbitRadius.toPx()
     }
 
-    val radians = Math.toRadians(angle.value.toDouble())
+    val radians = Math.toRadians(angle.value.toDouble() + angleOffsetForOrbit)
 
     Box(
         contentAlignment = Alignment.Center,

@@ -11,7 +11,8 @@ import kotlin.math.sin
 fun getPvZ2CLoadingIndicatorAnimation(
     spinnerView: View,
     orbitRadiusPx: Float = 4f * spinnerView.resources.displayMetrics.density,
-    durationMillis: Long = 1000L
+    durationMillis: Long = 1000L,
+    angleOffsetForOrbit: Double = -120.0
 ): ValueAnimator {
     return ValueAnimator.ofFloat(0f, 360f).apply {
         duration = durationMillis
@@ -20,7 +21,7 @@ fun getPvZ2CLoadingIndicatorAnimation(
 
         addUpdateListener { animator ->
             val angle = animator.animatedValue as Float
-            val radians = Math.toRadians(angle.toDouble())
+            val radians = Math.toRadians(angle.toDouble() + angleOffsetForOrbit)
 
             spinnerView.rotation = angle
             spinnerView.translationX = orbitRadiusPx * cos(radians).toFloat()
